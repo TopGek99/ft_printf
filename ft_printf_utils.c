@@ -13,31 +13,31 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	ft_printc(int c)
+int ft_printc(int c)
 {
-	char	ch;
+    char ch;
 
-	ch = (char)c;
-	write(1, &ch, 1);
-	return (1);
+    ch = (char)c;
+    write(1, &ch, 1);
+    return (1);
 }
 
-int	ft_prints(char *s)
+int ft_prints(char *s)
 {
-	if (!s)
-		return (ft_printf("(null)"));
-	write(1, s, ft_strlen(s));
-	return (ft_strlen(s));
+    if (!s)
+        return (ft_printf("(null)"));
+    write(1, s, ft_strlen(s));
+    return (ft_strlen(s));
 }
 
-int	ft_printp(void *p)
+int ft_printp(void *p)
 {
-	long long	d;
-	char		*hex;
+    int d;
+    char *hex;
 
-	d = (long long)p;
-	hex = ft_dec_to_hex(d);
-	write(1, hex, ft_strlen(hex));
-	free(hex);
-	return (ft_strlen(hex));
+    d = (int)p;
+    hex = ft_dec_to_hex_copilot(d);
+    write(1, hex, ft_strlen(hex));
+    free(hex);
+    return (ft_strlen(hex));
 }

@@ -11,17 +11,16 @@
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#define FT_PRINTF_H
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdlib.h>
+#include <unistd.h>
+#include <stdarg.h>
+#include <stdlib.h>
 
-int		ft_printf(const char *s, ...);
-int		ft_printc(int c);
-int		ft_prints(char *s);
-int		ft_printp(void *p);
-char	*ft_dec_to_hex(long long d);
+int ft_printf(const char *s, ...);
+int ft_printc(int c);
+int ft_prints(char *s);
+int ft_printp(void *p);
+char *ft_dec_to_hex_copilot(int d);
 
 #endif
-
