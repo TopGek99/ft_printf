@@ -13,12 +13,12 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-char	*ft_dec_to_hex(long long d)
+char	*ft_dec_to_hex(long d)
 {
-	char		*hex;
-	long long	mod;
-	long long	temp;
-	int			i;
+	char	*hex;
+	long	mod;
+	long	temp;
+	int		i;
 
 	if (d < 0)
 		d = 4294967295 + d;

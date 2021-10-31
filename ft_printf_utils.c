@@ -32,12 +32,14 @@ int ft_prints(char *s)
 
 int ft_printp(void *p)
 {
-    int d;
+    long d;
+	int	 len;
     char *hex;
 
-    d = (int)p;
-    hex = ft_dec_to_hex_copilot(d);
-    write(1, hex, ft_strlen(hex));
+    d = (long)p;
+    hex = ft_dec_to_hex(d);
+	len = ft_strlen(hex);
+    write(1, hex, len);
     free(hex);
-    return (ft_strlen(hex));
+    return (len);
 }
