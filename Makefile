@@ -5,7 +5,7 @@ CFLAGS = -c -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 
-SRCS = ft_printf.c ft_printf_utils.c ft_dec_to_hex.c ft_u_to_str.c
+SRCS = ft_printf.c ft_printcsdi.c ft_printxp.c ft_printu.c
 
 OBJS = $(SRCS:.c=.o) 
 
@@ -22,6 +22,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	cd libft && make fclean && cd ..
 
 re: clean all
 

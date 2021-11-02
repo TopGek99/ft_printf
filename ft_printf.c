@@ -13,11 +13,30 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
+int	ft_det_type(char flag, va_list args)
+{
+	if (flag == 'c')
+		return (ft_printc(va_arg(args, int)));
+	if (flag == 's')
+		return (ft_prints(va_arg(args, char *)));
+	if (flag == 'p')
+		return (ft_printp(va_arg(args, unsigned long)));
+	if (flag == 'd' || flag == 'i')
+		return (ft_printdi(va_arg(args, int)));
+	if (flag == 'u')
+		return (ft_printu(va_arg(args, unsigned int)));
+	if (flag == 'x' || flag == 'X')
+		return (ft_printx(va_arg(args, unsigned int), flag));
+	if (flag == '%')
+		return (write(1, "%", 1));
+	return (0);
+}
+
 int	ft_printf(const char *s, ...)
 {
-	int 	i;
+	int		i;
 	int		print_amount;
-	va_list args;
+	va_list	args;
 
 	i = 0;
 	print_amount = 0;
@@ -30,24 +49,8 @@ int	ft_printf(const char *s, ...)
 			print_amount++;
 		}
 		if (!s[i])
-			break;
-		if (s[i + 1] == 'c')
-			print_amount += ft_printc(va_arg(args, int));
-		else if (s[i + 1] == 's')
-			print_amount += ft_prints(va_arg(args, char*));
-		else if (s[i + 1] == 'p')
-			print_amount += ft_printp(va_arg(args, unsigned long));
-		else if (s[i + 1] == 'd' || s[i + 1] == 'i')
-			print_amount += ft_printdi(va_arg(args, int));
-		else if (s[i + 1] == 'u')
-			print_amount += ft_printu(va_arg(args, unsigned int));
-		else if (s[i + 1] == 'x' || s[i + 1] == 'X')
-			print_amount += ft_printx(va_arg(args, unsigned int), s[i + 1]);
-		else if (s[i + 1] == '%')
-		{
-			write(1, "%", 1);
-			print_amount++;
-		}
+			break ;
+		print_amount += ft_det_type(s[i + 1], args);
 		i += 2;
 	}
 	va_end(args);
