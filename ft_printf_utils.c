@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int ft_printc(int c)
+size_t ft_printc(int c)
 {
     char ch;
 
@@ -22,7 +22,7 @@ int ft_printc(int c)
     return (1);
 }
 
-int ft_prints(char *s)
+size_t ft_prints(char *s)
 {
     if (!s)
         return (ft_printf("(null)"));
@@ -30,16 +30,55 @@ int ft_prints(char *s)
     return (ft_strlen(s));
 }
 
-int ft_printp(void *p)
+size_t ft_printp(unsigned long p)
 {
-    long d;
-	int	 len;
+	size_t	 len;
     char *hex;
 
-    d = (long)p;
-    hex = ft_dec_to_hex(d);
-	len = ft_strlen(hex);
-    write(1, hex, len);
+	if (p == 0)
+		return (ft_printf("(nil)"));
+    hex = ft_dec_to_hex(p, 'p');
+	len = ft_printf("0x%s", hex);
     free(hex);
     return (len);
+}
+size_t	ft_printdi(int d)
+{
+	char	nb_str[10];
+	size_t 	len;
+
+	if (d < 0)
+		write(1, "-", 1);
+	len = num_to_str(d, nb_str);
+	write(1, nb_str, len);
+	if (d < 0)
+		return (len + 1);
+	return (len);
+}
+
+size_t	ft_printu(unsigned int d)
+{
+	char	nb_str[10];
+	size_t 	len;
+
+	len = ft_u_to_str(d, nb_str);
+	write(1, nb_str, len);
+	return (len);
+}
+
+size_t ft_printx(unsigned int p, char flag)
+{
+	size_t	 len;
+	char *hex;
+
+	if (p == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	hex = ft_dec_to_hex(p, flag);
+	len = ft_strlen(hex);
+	write(1, hex, len);
+	free(hex);
+	return (len);
 }

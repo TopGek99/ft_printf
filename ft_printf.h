@@ -16,11 +16,16 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <limits.h>
 
 int ft_printf(const char *s, ...);
-int ft_printc(int c);
-int ft_prints(char *s);
-int ft_printp(void *p);
-char *ft_dec_to_hex(long d);
+size_t	ft_printc(int c);
+size_t	ft_prints(char *s);
+size_t	ft_printp(unsigned long p);
+size_t	ft_printdi(int d);
+size_t	ft_printu(unsigned int d);
+size_t	ft_printx(unsigned int p, char flag);
+char	*ft_dec_to_hex(unsigned long d, char c);
+int	ft_u_to_str(int num, char *dest);
 
 #endif

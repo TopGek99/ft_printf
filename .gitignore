@@ -1,1 +1,3 @@
 printfTester
+*.o
+libft/*.o
