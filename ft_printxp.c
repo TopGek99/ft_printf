@@ -56,7 +56,7 @@ size_t	ft_printp(unsigned long p)
 	char	*hex;
 
 	if (p == 0)
-		return (ft_printf("(nil)"));
+		return (write(1, "0x0", 3));
 	hex = ft_dec_to_hex(p, 'p');
 	len = ft_printf("0x%s", hex);
 	free(hex);
@@ -69,10 +69,7 @@ size_t	ft_printx(unsigned int p, char flag)
 	char	*hex;
 
 	if (p == 0)
-	{
-		write(1, "0", 1);
-		return (1);
-	}
+		return (write(1, "0", 1));
 	hex = ft_dec_to_hex(p, flag);
 	len = ft_strlen(hex);
 	write(1, hex, len);
